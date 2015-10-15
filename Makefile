@@ -1,7 +1,7 @@
 BINDIR =	/usr/local/sbin
 MANDIR =	/usr/local/man/man8
 CC =		cc
-CFLAGS =	-O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wpointer-arith -Wshadow -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wno-long-long
+CFLAGS =	-std=gnu99 -Wall
 #SYSVLIBS =	-lnsl -lsocket
 LDFLAGS =	-s $(SYSVLIBS)
 
