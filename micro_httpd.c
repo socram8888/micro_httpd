@@ -153,6 +153,12 @@ void do_directory(const char * file, const struct stat * sb) {
 	int n;
 	struct dirent **dl;
 
+	n = scandir(file, &dl, NULL, alphasort);
+	if (n < 0) {
+		perror("scandir");
+		send_errno();
+	}
+
 	send_headers(200, "Ok", NULL, "text/html", -1, sb->st_mtime);
 	printf("\
 <!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n\
@@ -164,13 +170,9 @@ void do_directory(const char * file, const struct stat * sb) {
 	<body bgcolor=\"#99cc99\">\n\
 		<h4>Index of %s</h4>\n\
 		<pre>\n", file, file);
-	n = scandir(file, &dl, NULL, alphasort);
-	if (n < 0) {
-		perror("scandir");
-	} else {
-		for (int i = 0; i < n; ++i) {
-			file_details(file, dl[i]->d_name);
-		}
+
+	for (int i = 0; i < n; ++i) {
+		file_details(file, dl[i]->d_name);
 	}
 
 	printf("\
