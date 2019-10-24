@@ -12,6 +12,7 @@ micro_httpd.o:	micro_httpd.c
 	$(CC) $(CFLAGS) -c micro_httpd.c
 
 install:	all
+	mkdir -p /usr/local/man/man8/
 	rm -f $(BINDIR)/micro_httpd
 	cp micro_httpd $(BINDIR)/micro_httpd
 	rm -f $(MANDIR)/micro_httpd.8
