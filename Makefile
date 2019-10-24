@@ -1,9 +1,7 @@
 BINDIR =	/usr/local/sbin
 MANDIR =	/usr/local/man/man8
 CC =		cc
-CFLAGS =	-std=gnu99 -Wall
-#SYSVLIBS =	-lnsl -lsocket
-LDFLAGS =	-s $(SYSVLIBS)
+CFLAGS =	-std=gnu99 -Wall -O2
 
 all:		micro_httpd
 
