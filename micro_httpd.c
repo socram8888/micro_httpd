@@ -116,12 +116,12 @@ int main(int argc, char** argv) {
 	}
 
 	if (file[filelen - 1] != '/') {
-		char location[MAX_LINE_LEN];
+		char location[MAX_LINE_LEN + sizeof("Location: /")];
 		snprintf(location, sizeof(location), "Location: %s/", path);
 		send_error(301, "Moved Permanently", location, "Directories must end with a slash.");
 	}
 
-	char indexfile[MAX_LINE_LEN];
+	char indexfile[MAX_LINE_LEN + sizeof("index.html")];
 	snprintf(indexfile, sizeof(indexfile), "%sindex.html", file);
 	if (stat(indexfile, &sb) >= 0) {
 		do_file(indexfile, &sb);
