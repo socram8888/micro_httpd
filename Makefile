@@ -13,10 +13,12 @@ micro_httpd.o:	micro_httpd.c
 
 install:	all
 	mkdir -p /usr/local/man/man8/
-	rm -f $(BINDIR)/micro_httpd
-	cp micro_httpd $(BINDIR)/micro_httpd
-	rm -f $(MANDIR)/micro_httpd.8
-	cp micro_httpd.8 $(MANDIR)/micro_httpd.8
+	install -m 755 micro_httpd $(BINDIR)/
+	install -m 644 micro_httpd.8 $(MANDIR)/
 
 clean:
 	rm -f micro_httpd *.o core core.* *.core
+
+uninstall:
+	rm -f $(BINDIR)/micro_httpd
+	rm -f $(MANDIR)/micro_httpd.8
